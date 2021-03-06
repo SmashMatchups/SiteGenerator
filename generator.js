@@ -1,7 +1,6 @@
 const fs = require('fs');
 const md = require('markdown-it')();
 const cliProgress = require('cli-progress');
-const {Storage} = require('@google-cloud/storage');
 const nunjucks = require('nunjucks');
 const clone = require('git-clone');
 var fsExtra = require('fs-extra');
@@ -107,33 +106,3 @@ fsExtra.copy(sourceDir,destDir,function (err) {
 
 progress.stop();
 console.log("Uploading to cloud storage...")
-
-async function uploadToGCS() {
-  const storage = new Storage({keyFilename: "key.json"});
-  const bucketName = 'www.smashmatchups.com';
-
-  await Promise.all(fileNames.map(file => storage.bucket(bucketName).upload(file,file)))
-
-  const uploadProgress = new cliProgress.SingleBar({},cliProgress.Presets.shades_classic);
-  uploadProgress.start(charMap.length,0,{character: 'N/A'})
-  for (let char1 of charMap) {
-    uploadProgress.increment(1,{charcter: char1.fullName});
-
-    const promises = charMap.map(char2 => {
-      const path = `output/${char1.urlName}-vs-${char2.urlName}`;
-      const destination = path.split('/')[1];
-      return storage.bucket(bucketName).upload(path,destination).then(success => {
-        success[0].setMetadata({contentType: 'text/html'})
-      },fail => {
-        console.error(fail);
-      })
-    });
-    await Promise.all(promises);
-  }
-
-  uploadProgress.stop();
-  console.log("Complete.");
-  process.exit(1);
-}
-
-// uploadToGCS();
