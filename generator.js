@@ -23,8 +23,6 @@ const charMap = characters.map(
     fullName
   }));
 
-// clone("https://github.com/SmashMatchups/SSBU-Matchups.git","matchups");
-
 const template = nunjucks.compile(fs.readFileSync("index.njk").toString());
 
 const writeTemplate = (data) => {
@@ -40,15 +38,12 @@ const writeTemplate = (data) => {
 }
 
 console.log("Generating matchup files...")
-
 const progress = new cliProgress.SingleBar({},cliProgress.Presets.shades_classic);
 progress.start(charMap.length * charMap.length,0,{
   currentFile: 'N/A'
 });
 
 // For every combonation of characters
-
-
 charMap.forEach(char1 => {
   charMap.forEach(char2 => {
     progress.increment(1);
@@ -84,8 +79,7 @@ charMap.forEach(char1 => {
   });
 });
 
-// Also add our index, script, and css assets to the output folder
-const fileNames = [];
+// Also add our assets output folder
 fs.writeFileSync(localPath + '/index.html',template.render({local,isHomepage: true,charMap}))
 var sourceDir = './assets';
 var destDir = './' + localPath;
@@ -105,4 +99,3 @@ fsExtra.copy(sourceDir,destDir,function (err) {
 });
 
 progress.stop();
-console.log("Uploading to cloud storage...")
