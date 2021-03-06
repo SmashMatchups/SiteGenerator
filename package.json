@@ -1,0 +1,28 @@
+{
+  "name": "smashmatchups",
+  "version": "1.0.0",
+  "description": "Site Generator for SmashMatchups.com",
+  "main": "generator.js",
+  "dependencies": {
+    "cli-progress": "^3.9.0",
+    "fs-extra": "^9.1.0",
+    "git-clone": "^0.1.0",
+    "markdown-it": "^12.0.4",
+    "nunjucks": "^3.2.3",
+    "minimist": "^1.2.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "node generator.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SmashMatchups/SiteGenerator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SmashMatchups/SiteGenerator/issues"
+  },
+  "homepage": "https://github.com/SmashMatchups/SiteGenerator#readme"
+}
