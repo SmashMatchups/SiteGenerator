@@ -110,6 +110,7 @@ a#char2.picked {
   border-color: red;
   z-index: 1;
   outline: 1px red;
+  background: #f005;
 }
 
 .character-list .character.char1::after {
@@ -134,6 +135,7 @@ a#char2.picked {
   border-color: #26f;
   z-index: 1;
   outline: 1px #26f;
+  background: #02f5;
 }
 
 .character-list .character.char2::after {
@@ -215,8 +217,10 @@ section {
   border-radius: 4px;
   width: 500px;
   margin: 6px;
+  flex-grow: 1;
   padding: 6px;
   box-shadow: 0px 2px 5px #0003;
+  max-width: 480px;
 }
 
 #edit {
@@ -232,4 +236,13 @@ section {
   text-decoration: none;
   border: 3px double #aaa;
   margin: 12px auto;
+}
+
+#matchup {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: auto;
+  max-width: 1000px;
+  justify-content: center;
 }

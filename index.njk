@@ -47,26 +47,33 @@
     {% endfor %}
   </div>
 
+  {% if isHomepage %}
   <div id="content">
-    {% if isHomepage %}
-      <p>
-        <h2>Pick any two characters and get information on the Matchup.</h2><br>
-        The matchup information will be on how Player One can
-        win - so <a href="./mewtwo-vs-bowser{{'.html' if local}}">Mewtwo vs Bowser</a> describes how Mewtwo should play.
-     </p>
-    {% endif %}
-    {{ matchupContent | safe }}
-    {% if not isHomepage and not hasMatchupContent %}
     <p>
-      <h2>No matchup information found.<br>Sorry about that!</h2>
+      <h2>Pick any two characters and get information on the Matchup.</h2><br>
+      The matchup information will be on how Player One can
+      win - so <a href="./mewtwo-vs-bowser{{'.html' if local}}">Mewtwo vs Bowser</a> describes how Mewtwo should play.
     </p>
-    {% endif %}
-    {% if githubLink %}
-     <a id='edit' href="{{ githubLink }}">{{ "Edit this page" if hasMatchupContent else "Create this page" }}</a>
-    {% endif %}
   </div>
+  {% endif %}
 
+  {% if hasMatchupContent %}
+    <div id="matchup">
+    {{ matchupContent | safe }}
+    </div>
+  {% endif %}
 
+  {% if not isHomepage and not hasMatchupContent %}
+    <div id="content">
+      <p>
+        <h2>No matchup information found.<br>Sorry about that!</h2>
+      </p>
+    </div>
+  {% endif %}
+
+  {% if not isHomepage %}
+    <a id='edit' href="{{ githubLinkEdit if hasMatchupContent else githubLinkCreate }}">{{ "Edit this page" if hasMatchupContent else "Create this page" }}</a>
+  {% endif %}
 </body>
 
 </html>

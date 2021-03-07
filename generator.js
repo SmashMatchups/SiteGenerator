@@ -8,6 +8,7 @@ var path = require('path');
 const args = require('minimist')(process.argv.slice(2));
 const local = !!args['local']
 const localPath = local ? "local" : "output";
+const cheerio = require('cheerio');
 
 
 fs.mkdirSync(localPath,{recursive: true});
@@ -37,6 +38,19 @@ const writeTemplate = (data) => {
   fs.writeFileSync(path + (local ? ".html" : ""),output)
 }
 
+const renderMarkdown = (content) => {
+  const domString = md.render(content);
+  if (!domString) return '';
+  const doc = cheerio.load(domString);
+  const result = cheerio.load("<div id='content'></div>");
+  doc('body > *').toArray().forEach(ele => {
+    if (ele.name == 'h2') result('#content').append("<section></section>")
+    if (result('#content').children().length > 0)
+      result('#content section').last().append(ele);
+  });
+  return result('#content').html();
+}
+
 console.log("Generating matchup files...")
 const progress = new cliProgress.SingleBar({},cliProgress.Presets.shades_classic);
 progress.start(charMap.length * charMap.length,0,{
@@ -52,13 +66,15 @@ charMap.forEach(char1 => {
     let content = '';
     if (fs.existsSync(matchupFile)) content = fs.readFileSync(matchupFile).toString();
     else if (fs.existsSync(fallBackFile)) content = fs.readFileSync(fallBackFile).toString();
+    content = renderMarkdown(content);
     const data = {
       hasMatchupContent: !!content,
-      matchupContent: md.render(content),
+      matchupContent: content,
       char1,
       char2,
       isHomepage: false,
-      githubLink: `https://github.com/SmashMatchups/SSBU-Matchups/new/main/matchups/${char1.urlName}/${char2.urlName}?filename=${char2.urlName}.md&value=%23%20${encodeURIComponent(char1.fullName)}%20vs%20${encodeURIComponent(char2.fullName)}`,
+      githubLinkCreate: `https://github.com/SmashMatchups/SSBU-Matchups/new/main/matchups/${char1.urlName}/${char2.urlName}?filename=${char2.urlName}.md&value=%23%20${encodeURIComponent(char1.fullName)}%20vs%20${encodeURIComponent(char2.fullName)}`,
+      githubLinkEdit: `https://github.com/SmashMatchups/SSBU-Matchups/edit/main/matchups/${char1.urlName}/${char2.urlName}.md`,
     }
     writeTemplate(data);
   });

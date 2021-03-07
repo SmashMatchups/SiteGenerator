@@ -1,0 +1,5 @@
+node_modules/*
+matchups/*
+node_modules
+output/*
+local/*
