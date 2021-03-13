@@ -246,3 +246,8 @@ section {
   max-width: 1000px;
   justify-content: center;
 }
+
+section.warning {
+  padding: 12px;
+  background: lightyellow;
+}

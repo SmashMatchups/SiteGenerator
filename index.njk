@@ -59,6 +59,14 @@
 
   {% if hasMatchupContent %}
     <div id="matchup">
+      {% if isGenericContent %}
+        <section class="warning">
+          <h2>Showing Generic Tips</h2><br>
+          These are basic tips on how to beat {{char2.fullName}}. We don't have tips for how
+          {{char1.fullName}} specifically should play. If you have advice for this matchup - consider <a href="{{githubLinkCreate}}">adding them</a> to help the community!
+        </section>
+        <hr style="width:100%; border:none;"></hr>
+      {% endif %}
     {{ matchupContent | safe }}
     </div>
   {% endif %}
@@ -72,7 +80,11 @@
   {% endif %}
 
   {% if not isHomepage %}
-    <a id='edit' href="{{ githubLinkEdit if hasMatchupContent else githubLinkCreate }}">{{ "Edit this page" if hasMatchupContent else "Create this page" }}</a>
+    <a id='edit' href="{{ githubLinkEdit if hasMatchupContent else githubLinkCreate }}">{{ "Edit this page" if hasMatchupContent and not isGenericContent else "Create this page" }}</a>
+    
+    {% if isGenericContent %}
+      <a id='edit' href="{{githubGenericEdit}}">Edit generic {{char2.fullName}} tips</a>
+    {% endif %}
   {% endif %}
 </body>
 

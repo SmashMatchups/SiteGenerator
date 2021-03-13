@@ -64,17 +64,23 @@ charMap.forEach(char1 => {
     const matchupFile = `matchups/${char1.urlName}/${char2.urlName}.md`;
     const fallBackFile = `matchups/${char2.urlName}/how_to_beat.md`;
     let content = '';
+    let isGenericContent = false;
     if (fs.existsSync(matchupFile)) content = fs.readFileSync(matchupFile).toString();
-    else if (fs.existsSync(fallBackFile)) content = fs.readFileSync(fallBackFile).toString();
+    else if (fs.existsSync(fallBackFile)) {
+      content = fs.readFileSync(fallBackFile).toString();
+      isGenericContent = true;
+    }
     content = renderMarkdown(content);
     const data = {
       hasMatchupContent: !!content,
       matchupContent: content,
+      isGenericContent,
       char1,
       char2,
       isHomepage: false,
       githubLinkCreate: `https://github.com/SmashMatchups/SSBU-Matchups/new/main/matchups/${char1.urlName}/${char2.urlName}?filename=${char2.urlName}.md&value=%23%20${encodeURIComponent(char1.fullName)}%20vs%20${encodeURIComponent(char2.fullName)}`,
       githubLinkEdit: `https://github.com/SmashMatchups/SSBU-Matchups/edit/main/matchups/${char1.urlName}/${char2.urlName}.md`,
+      githubGenericEdit: `https://github.com/SmashMatchups/SSBU-Matchups/edit/main/matchups/${char2.urlName}/how_to_beat.md`,
     }
     writeTemplate(data);
   });
