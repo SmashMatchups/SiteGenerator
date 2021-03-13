@@ -2,7 +2,9 @@
 <html>
 
 <head>
-  <title>{% if not isHomepage %}{{char1.fullName}} vs {{char2.fullName}} | {% endif %} SmashMatchups.com</title>
+  <title>
+    {% if not isHomepage %}{{char1.fullName}} vs {{char2.fullName}} | SmashMatchups.com{% else %}
+    SmashMatchups - Tips for every battle in Smash Ultimate</title>
   <script src="./script.js"></script>
   {# <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js"></script> #}
   <link rel="stylesheet" href="./style.css">
