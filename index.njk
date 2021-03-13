@@ -1,17 +1,29 @@
 <!DOCTYPE html>
-<html>
-
+<html amp>
 <head>
+  <meta charset="utf-8">
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
   <title>
     {% if not isHomepage %}{{char1.fullName}} vs {{char2.fullName}} | SmashMatchups.com{% else %}
-    SmashMatchups - Tips for every battle in Smash Ultimate</title>
-  {# <script src="https://cdnjs.cloudflare.com/ajax/libs/turbolinks/5.2.0/turbolinks.js"></script> #}
+    SmashMatchups - Tips for every battle in Smash Ultimate{% endif %}</title>
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+
   <link rel="stylesheet" href="./style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="{{canonicalLink}}">
   {% if isHomepage %}
     <meta name="description" content="How to win every matchup in Super Smash Bros. Ultimate">
   {% else %}
-    <meta name="description" content="How to beat {{char2.fullName}} as {{char1.fullName}} in Super Smash Bros. Ultimate">
+    <meta name="description" content="How to beat {{char2.fullName if char2 else 'anyone'}} as {{char1.fullName if char1 else 'anyone'}} in Super Smash Bros. Ultimate">
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "HowToTip",
+      "mainEntityOfPage": "{{canonicalLink}}",
+      "abstract": "How to beat {{char2.fullName if char2 else 'anyone'}} as {{char1.fullName if char1 else 'anyone'}} in Super Smash Bros. Ultimate",
+      "character": "{{char1.fullName}}"
+    }
+   </script>
   {% endif %}
 </head>
 
