@@ -119,5 +119,14 @@ fsExtra.copy(sourceDir,destDir,function (err) {
     console.log("success!");
   }
 });
-
 progress.stop();
+
+let siteMapText = "https://www.smashmatchups.com/";
+console.log("Creating sitemap");
+charMap.forEach(char1 => {
+  charMap.forEach(char2 => {
+    siteMapText += "\nhttps://www.smashmatchups.com/" + char1.urlName + "-vs-" + char2.urlName;
+  });
+});
+fs.writeFileSync(localPath + "/sitemap.txt",siteMapText);
+
