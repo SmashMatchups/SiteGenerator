@@ -6,7 +6,7 @@
     {% if not isHomepage %}{{char1.fullName}} vs {{char2.fullName}} | SmashMatchups.com{% else %}
     SmashMatchups - Tips for every battle in Smash Ultimate{% endif %}</title>
 
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="{{'../assets/' if local}}style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="canonical" href="{{canonicalLink}}">
   {% if isHomepage %}
@@ -28,7 +28,7 @@
 <body>
   <div id="heading">
     <a href="./{{'index.html' if local}}">
-      <img src="img/logo.png" alt="SmashMatchups.com"></img>
+      <img src="{{'../assets/' if local}}img/logo.png" alt="SmashMatchups.com"></img>
     </a>
   </div>
 
@@ -44,7 +44,7 @@
   <div id="picker1" class="character-list">
     {% for char in charMap %}
       <a href='{{char.urlName}}-vs-{{char2.urlName if char2 else "anyone"}}{{".html" if local}}' class="character {{'char1' if char1.urlName == char.urlName}} {{'char2' if char2.urlName == char.urlName}}">
-        <div class="icon" style="background-image: url(img/icon/{{char.urlName}}.png)"></div>
+        <div class="icon" style="background-image: url({{'../assets/' if local}}img/icon/{{char.urlName}}.png)"></div>
         <span>{{char.fullName}}</span>
       </a>
     {% endfor %}
@@ -53,7 +53,7 @@
   <div id="picker2" class="character-list">
     {% for char in charMap %}
       <a href='{{char1.urlName if char1 else "anyone"}}-vs-{{char.urlName}}{{".html" if local}}' class="character {{'char1' if char1.urlName == char.urlName}} {{'char2' if char2.urlName == char.urlName}}">
-        <div class="icon" style="background-image: url(img/icon/{{char.urlName}}.png)"></div>
+        <div class="icon" style="background-image: url({{'../assets/' if local}}img/icon/{{char.urlName}}.png)"></div>
         <span>{{char.fullName}}</span>
       </a>
     {% endfor %}

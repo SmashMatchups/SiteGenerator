@@ -14,8 +14,8 @@ const cheerio = require('cheerio');
 fs.mkdirSync(localPath,{recursive: true});
 console.log("Building site to './" + localPath + "'");
 
-let characters = ["Banjo & Kazooie","Bayonetta","Bowser Jr.","Bowser","Byleth","Captain Falcon","Charizard","Chrom","Cloud","Corrin","Daisy","Dark Pit","Dark Samus","Diddy Kong","Donkey Kong","Dr.Mario","Duck Hunt","Falco","Fox","Ganondorf","Greninja","Hero","Ice Climbers","Ike","Incineroar","Inkling","Isabelle","Ivysaur","Jigglypuff","Joker","Ken","King Dedede","King K.Rool","Kirby","Link","Little Mac","Lucario","Lucas","Lucina","Luigi","Mario","Marth","Mega Man","Meta Knight","Mewtwo","Mii Brawler","Mii Gunner","Mii Swordfighter","Min Min","Mr.Game & Watch","Ness","Olimar","Pac - Man","Palutena","Peach","Pichu","Pikachu","Piranha Plant","Pit","ROB","Richter","Ridley","Robin","Rosalina & Luma","Roy","Ryu","Samus","Sephiroth","Sheik","Shulk","Simon","Snake","Sonic","Squirtle","Steve","Terry","Toon Link","Villager","Wario","Wii Fit Trainer","Wolf","Yoshi","Young Link","Zelda","Zero Suit Samus"
-];
+let characters = ["Banjo & Kazooie","Bayonetta","Bowser Jr.","Bowser","Byleth","Captain Falcon","Charizard","Chrom","Cloud","Corrin","Daisy","Dark Pit","Dark Samus","Diddy Kong","Donkey Kong","Dr.Mario","Duck Hunt","Falco","Fox","Ganondorf","Greninja","Hero","Ice Climbers","Ike","Incineroar","Inkling","Isabelle","Ivysaur","Jigglypuff","Joker","Ken","King Dedede","King K.Rool","Kirby","Link","Little Mac","Lucario","Lucas","Lucina","Luigi","Mario","Marth","Mega Man","Meta Knight","Mewtwo","Mii Brawler","Mii Gunner","Mii Swordfighter","Min Min","Mr.Game & Watch","Ness","Olimar","Pac - Man","Palutena","Peach","Pichu","Pikachu","Piranha Plant","Pit","ROB","Richter","Ridley","Robin","Rosalina & Luma","Roy","Ryu","Samus","Sephiroth","Sheik","Shulk","Simon","Snake","Sonic","Squirtle","Steve","Terry","Toon Link","Villager","Wario","Wii Fit Trainer","Wolf","Yoshi","Young Link","Zelda","Zero Suit Samus"];
+
 if (local) characters = ["Bowser","Mewtwo","Villager","Yoshi"];
 
 const encode = string => string.replace(/\./g," ").trim().replace(/ /g,"_").replace('&','and').replace(/\-/g,"").replace('__','_').toLowerCase();
@@ -104,24 +104,9 @@ charMap.forEach(char1 => {
   });
 });
 
-// Also add our assets output folder
+// Also add our homepage
 fs.writeFileSync(localPath + '/index.html',template.render({local,isHomepage: true,charMap,canonicalLink: "https://www.smashmatchups.com/"}))
-var sourceDir = './assets';
-var destDir = './' + localPath;
 
-// if folder doesn't exists create it
-if (!fs.existsSync(destDir)) {
-  fs.mkdirSync(destDir,{recursive: true});
-}
-
-//copy directory content including subfolders
-fsExtra.copy(sourceDir,destDir,function (err) {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log("success!");
-  }
-});
 progress.stop();
 
 let siteMapText = "https://www.smashmatchups.com/";
