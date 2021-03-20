@@ -1,0 +1,347 @@
+[
+  {
+    "isAnyone": true,
+    "urlName": "anyone",
+    "fullName": "Anyone"
+  },
+  {
+    "urlName": "banjo_and_kazooie",
+    "fullName": "Banjo & Kazooie"
+  },
+  {
+    "urlName": "bayonetta",
+    "fullName": "Bayonetta"
+  },
+  {
+    "urlName": "bowser_jr",
+    "fullName": "Bowser Jr."
+  },
+  {
+    "urlName": "bowser",
+    "fullName": "Bowser"
+  },
+  {
+    "urlName": "byleth",
+    "fullName": "Byleth"
+  },
+  {
+    "urlName": "captain_falcon",
+    "fullName": "Captain Falcon"
+  },
+  {
+    "urlName": "charizard",
+    "fullName": "Charizard"
+  },
+  {
+    "urlName": "chrom",
+    "fullName": "Chrom"
+  },
+  {
+    "urlName": "cloud",
+    "fullName": "Cloud"
+  },
+  {
+    "urlName": "corrin",
+    "fullName": "Corrin"
+  },
+  {
+    "urlName": "daisy",
+    "fullName": "Daisy"
+  },
+  {
+    "urlName": "dark_pit",
+    "fullName": "Dark Pit"
+  },
+  {
+    "urlName": "dark_samus",
+    "fullName": "Dark Samus"
+  },
+  {
+    "urlName": "diddy_kong",
+    "fullName": "Diddy Kong"
+  },
+  {
+    "urlName": "donkey_kong",
+    "fullName": "Donkey Kong"
+  },
+  {
+    "urlName": "dr_mario",
+    "fullName": "Dr.Mario"
+  },
+  {
+    "urlName": "duck_hunt",
+    "fullName": "Duck Hunt"
+  },
+  {
+    "urlName": "falco",
+    "fullName": "Falco"
+  },
+  {
+    "urlName": "fox",
+    "fullName": "Fox"
+  },
+  {
+    "urlName": "ganondorf",
+    "fullName": "Ganondorf"
+  },
+  {
+    "urlName": "greninja",
+    "fullName": "Greninja"
+  },
+  {
+    "urlName": "hero",
+    "fullName": "Hero"
+  },
+  {
+    "urlName": "ice_climbers",
+    "fullName": "Ice Climbers"
+  },
+  {
+    "urlName": "ike",
+    "fullName": "Ike"
+  },
+  {
+    "urlName": "incineroar",
+    "fullName": "Incineroar"
+  },
+  {
+    "urlName": "inkling",
+    "fullName": "Inkling"
+  },
+  {
+    "urlName": "isabelle",
+    "fullName": "Isabelle"
+  },
+  {
+    "urlName": "ivysaur",
+    "fullName": "Ivysaur"
+  },
+  {
+    "urlName": "jigglypuff",
+    "fullName": "Jigglypuff"
+  },
+  {
+    "urlName": "joker",
+    "fullName": "Joker"
+  },
+  {
+    "urlName": "ken",
+    "fullName": "Ken"
+  },
+  {
+    "urlName": "king_dedede",
+    "fullName": "King Dedede"
+  },
+  {
+    "urlName": "king_k_rool",
+    "fullName": "King K.Rool"
+  },
+  {
+    "urlName": "kirby",
+    "fullName": "Kirby"
+  },
+  {
+    "urlName": "link",
+    "fullName": "Link"
+  },
+  {
+    "urlName": "little_mac",
+    "fullName": "Little Mac"
+  },
+  {
+    "urlName": "lucario",
+    "fullName": "Lucario"
+  },
+  {
+    "urlName": "lucas",
+    "fullName": "Lucas"
+  },
+  {
+    "urlName": "lucina",
+    "fullName": "Lucina"
+  },
+  {
+    "urlName": "luigi",
+    "fullName": "Luigi"
+  },
+  {
+    "urlName": "mario",
+    "fullName": "Mario"
+  },
+  {
+    "urlName": "marth",
+    "fullName": "Marth"
+  },
+  {
+    "urlName": "mega_man",
+    "fullName": "Mega Man"
+  },
+  {
+    "urlName": "meta_knight",
+    "fullName": "Meta Knight"
+  },
+  {
+    "urlName": "mewtwo",
+    "fullName": "Mewtwo"
+  },
+  {
+    "urlName": "mii_brawler",
+    "fullName": "Mii Brawler"
+  },
+  {
+    "urlName": "mii_gunner",
+    "fullName": "Mii Gunner"
+  },
+  {
+    "urlName": "mii_swordfighter",
+    "fullName": "Mii Swordfighter"
+  },
+  {
+    "urlName": "min_min",
+    "fullName": "Min Min"
+  },
+  {
+    "urlName": "mr_game_and_watch",
+    "fullName": "Mr.Game & Watch"
+  },
+  {
+    "urlName": "ness",
+    "fullName": "Ness"
+  },
+  {
+    "urlName": "olimar",
+    "fullName": "Olimar"
+  },
+  {
+    "urlName": "pac_man",
+    "fullName": "Pac - Man"
+  },
+  {
+    "urlName": "palutena",
+    "fullName": "Palutena"
+  },
+  {
+    "urlName": "peach",
+    "fullName": "Peach"
+  },
+  {
+    "urlName": "pichu",
+    "fullName": "Pichu"
+  },
+  {
+    "urlName": "pikachu",
+    "fullName": "Pikachu"
+  },
+  {
+    "urlName": "piranha_plant",
+    "fullName": "Piranha Plant"
+  },
+  {
+    "urlName": "pit",
+    "fullName": "Pit"
+  },
+  {
+    "urlName": "rob",
+    "fullName": "ROB"
+  },
+  {
+    "urlName": "richter",
+    "fullName": "Richter"
+  },
+  {
+    "urlName": "ridley",
+    "fullName": "Ridley"
+  },
+  {
+    "urlName": "robin",
+    "fullName": "Robin"
+  },
+  {
+    "urlName": "rosalina_and_luma",
+    "fullName": "Rosalina & Luma"
+  },
+  {
+    "urlName": "roy",
+    "fullName": "Roy"
+  },
+  {
+    "urlName": "ryu",
+    "fullName": "Ryu"
+  },
+  {
+    "urlName": "samus",
+    "fullName": "Samus"
+  },
+  {
+    "urlName": "sephiroth",
+    "fullName": "Sephiroth"
+  },
+  {
+    "urlName": "sheik",
+    "fullName": "Sheik"
+  },
+  {
+    "urlName": "shulk",
+    "fullName": "Shulk"
+  },
+  {
+    "urlName": "simon",
+    "fullName": "Simon"
+  },
+  {
+    "urlName": "snake",
+    "fullName": "Snake"
+  },
+  {
+    "urlName": "sonic",
+    "fullName": "Sonic"
+  },
+  {
+    "urlName": "squirtle",
+    "fullName": "Squirtle"
+  },
+  {
+    "urlName": "steve",
+    "fullName": "Steve"
+  },
+  {
+    "urlName": "terry",
+    "fullName": "Terry"
+  },
+  {
+    "urlName": "toon_link",
+    "fullName": "Toon Link"
+  },
+  {
+    "urlName": "villager",
+    "fullName": "Villager"
+  },
+  {
+    "urlName": "wario",
+    "fullName": "Wario"
+  },
+  {
+    "urlName": "wii_fit_trainer",
+    "fullName": "Wii Fit Trainer"
+  },
+  {
+    "urlName": "wolf",
+    "fullName": "Wolf"
+  },
+  {
+    "urlName": "yoshi",
+    "fullName": "Yoshi"
+  },
+  {
+    "urlName": "young_link",
+    "fullName": "Young Link"
+  },
+  {
+    "urlName": "zelda",
+    "fullName": "Zelda"
+  },
+  {
+    "urlName": "zero_suit_samus",
+    "fullName": "Zero Suit Samus"
+  }
+]

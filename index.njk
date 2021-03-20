@@ -12,13 +12,13 @@
   {% if isHomepage %}
     <meta name="description" content="How to win every matchup in Super Smash Bros. Ultimate">
   {% else %}
-    <meta name="description" content="How to beat {{char2.fullName if char2 else 'anyone'}} as {{char1.fullName if char1 else 'anyone'}} in Super Smash Bros. Ultimate">
+    <meta name="description" content="How to beat {{char2.fullName}} as {{char1.fullName}} in Super Smash Bros. Ultimate">
     <script type="application/ld+json">
     {
       "@context": "http://schema.org",
       "@type": "HowToTip",
       "mainEntityOfPage": "{{canonicalLink}}",
-      "abstract": "How to beat {{char2.fullName if char2 else 'anyone'}} as {{char1.fullName if char1 else 'anyone'}} in Super Smash Bros. Ultimate",
+      "abstract": "How to beat {{char2.fullName}} as {{char1.fullName}} in Super Smash Bros. Ultimate",
       "character": "{{char1.fullName}}"
     }
    </script>
@@ -42,20 +42,24 @@
   </h1>
 
   <div id="picker1" class="character-list">
-    {% for char in charMap %}
-      <a href='{{char.urlName}}-vs-{{char2.urlName if char2 else "anyone"}}{{".html" if local}}' class="character {{'char1' if char1.urlName == char.urlName}} {{'char2' if char2.urlName == char.urlName}}">
-        <div class="icon" style="background-image: url({{'../assets/' if local}}img/icon/{{char.urlName}}.png)"></div>
-        <span>{{char.fullName}}</span>
-      </a>
+    {% for char in characters %}
+      {% if not char.isAnyone %}
+        <a href='{{char.urlName}}-vs-{{char2.urlName if char2 else "anyone"}}{{".html" if local}}' class="character {{'char1' if char1.urlName == char.urlName}} {{'char2' if char2.urlName == char.urlName}}">
+          <div class="icon" style="background-image: url({{'../assets/' if local}}img/icon/{{char.urlName}}.png)"></div>
+          <span>{{char.fullName}}</span>
+        </a>
+      {% endif %}
     {% endfor %}
   </div>
 
   <div id="picker2" class="character-list">
-    {% for char in charMap %}
-      <a href='{{char1.urlName if char1 else "anyone"}}-vs-{{char.urlName}}{{".html" if local}}' class="character {{'char1' if char1.urlName == char.urlName}} {{'char2' if char2.urlName == char.urlName}}">
-        <div class="icon" style="background-image: url({{'../assets/' if local}}img/icon/{{char.urlName}}.png)"></div>
-        <span>{{char.fullName}}</span>
-      </a>
+    {% for char in characters %}
+      {% if not char.isAnyone %}
+        <a href='{{char1.urlName if char1 else "anyone"}}-vs-{{char.urlName}}{{".html" if local}}' class="character {{'char1' if char1.urlName == char.urlName}} {{'char2' if char2.urlName == char.urlName}}">
+          <div class="icon" style="background-image: url({{'../assets/' if local}}img/icon/{{char.urlName}}.png)"></div>
+          <span>{{char.fullName}}</span>
+        </a>
+      {% endif %}
     {% endfor %}
   </div>
 
@@ -85,7 +89,7 @@
           <b>{{char1.fullName}}</b> specifically should play. If you have advice for this matchup - consider <a href="{{githubLinkCreate}}">adding them</a> to help the community!
         </section>
         <hr style="width:100%; border:none;"></hr>
-      {% elif isVsAnyone %}
+      {% elif char1.isAnyone %}
         <section class="warning">
           <h2>Showing Generic Tips</h2><br>
           These are basic tips on how to beat <b>{{char2.fullName}}</b>. To get advice tailored to a specific character, make sure to pick <b>Player One</b>!
@@ -106,10 +110,10 @@
 
   {% if not isHomepage %}
     <div class="buttons">
-      {% if not isVsAnyone %}
+      {% if not char1.isAnyone %}
         <a id='edit' href="{{ githubLinkEdit if hasMatchupContent else githubLinkCreate }}">{{ "Edit this page" if hasMatchupContent and not isGenericContent else "Create this page" }}</a>
       {% endif %}
-      {% if isGenericContent or isVsAnyone %}
+      {% if isGenericContent or char1.isAnyone %}
         <a id='edit' href="{{githubGenericEdit}}">Edit generic {{char2.fullName}} tips</a>
       {% endif %}
     </div>
