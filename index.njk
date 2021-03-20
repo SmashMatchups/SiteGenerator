@@ -92,12 +92,18 @@
   {% endif %}
 
   {% if not isHomepage %}
-    <a id='edit' href="{{ githubLinkEdit if hasMatchupContent else githubLinkCreate }}">{{ "Edit this page" if hasMatchupContent and not isGenericContent else "Create this page" }}</a>
-    
-    {% if isGenericContent %}
-      <a id='edit' href="{{githubGenericEdit}}">Edit generic {{char2.fullName}} tips</a>
-    {% endif %}
+    <div class="buttons">
+      <a id='edit' href="{{ githubLinkEdit if hasMatchupContent else githubLinkCreate }}">{{ "Edit this page" if hasMatchupContent and not isGenericContent else "Create this page" }}</a>
+      
+      {% if isGenericContent %}
+        <a id='edit' href="{{githubGenericEdit}}">Edit generic {{char2.fullName}} tips</a>
+      {% endif %}
+    </div>
   {% endif %}
+
+  <footer>
+    SmashMatchups.com is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Nintendo, or any of their properties.
+  </footer>
 </body>
 
 </html>

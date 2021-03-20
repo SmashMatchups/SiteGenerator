@@ -4,13 +4,16 @@ body {
   padding: 20px;
   background: #eee;
   font-family: Roboto, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #heading {
   padding: 20px;
   text-align: center;
   max-width: 1000px;
-  margin: calc(3vh + 10px) auto;
+  margin: calc(2vh + 10px) 0px;
 }
 
 #heading a {
@@ -19,7 +22,7 @@ body {
 
 h1{
   font-size: 3rem;
-  margin-top: 5vh;
+  margin: 0px 20px;
   text-align: center;
 }
 
@@ -30,7 +33,7 @@ h2 {
 }
 
 #picker {
-  margin: auto;
+  margin: 20px 0px;
   display: flex;
   text-align: center;
   justify-content: center;
@@ -201,11 +204,10 @@ a#char2.picked {
 
 #content {
   padding: 24px;
-  margin: 26px auto;
+  margin: 26px 0px;
   min-width: 50%;
   width: 800px;
   max-width: 100%;
-  margin: auto;
   background: white;
   border-radius: 8px;
   box-shadow: 0px 3px 7px rgb(0 0 0 / 50%);
@@ -230,7 +232,6 @@ section {
   font-size: 18px;
   text-transform: uppercase;
   text-align: center;
-  width: 220px;
   border-radius: 19px;
   color: black;
   text-decoration: none;
@@ -250,4 +251,20 @@ section {
 section.warning {
   padding: 12px;
   background: lightyellow;
+}
+
+footer {
+  background: #999;
+  color: white;
+  padding: 10px;
+  font-size: 12px;
+  margin-top: 120px;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  max-width: 1000px;
 }
