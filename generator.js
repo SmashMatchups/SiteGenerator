@@ -88,12 +88,22 @@ charMap.forEach(char1 => {
     writeTemplate(data);
   });
   // Add the anyone-vs-char and char-vs-anyone files
+  const fallBackFile = `matchups/${char1.urlName}/how_to_beat.md`;
+  let content = '';
+  if (fs.existsSync(fallBackFile)) {
+    content = fs.readFileSync(fallBackFile).toString();
+    content = renderMarkdown(content);
+  }
   writeTemplate({
     char1: undefined,
     char2: char1,
     playerOne: undefined,
     playerTwo: char1,
-    isHomepage: true,
+    matchupContent: content,
+    isVsAnyone: true,
+    hasMatchupContent: !!content,
+    githubGenericEdit: `https://github.com/SmashMatchups/SSBU-Matchups/edit/main/matchups/${char1.urlName}/how_to_beat.md`,
+    isHomepage: false,   // <-- Anyone-vs-Char still shows how_to_beat
   });
   writeTemplate({
     char1,
@@ -101,6 +111,7 @@ charMap.forEach(char1 => {
     playerOne: char1,
     playerTwo: undefined,
     isHomepage: true,
+    showPickPlayerTwo: true,
   });
 });
 

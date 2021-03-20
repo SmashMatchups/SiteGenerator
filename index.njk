@@ -62,10 +62,17 @@
   {% if isHomepage %}
   <div id="content">
     <p>
+    {% if not showPickPlayerTwo %}
       <h2>Pick any two characters and get information on the Matchup.</h2><br>
       The matchup information will be on how Player One can
       win - so <a href="./mewtwo-vs-bowser{{'.html' if local}}">Mewtwo vs Bowser</a> describes how Mewtwo should play.
     </p>
+    {% else %}
+
+      <h2>Pick Player Two</h2><br>
+        <center>For suggestions on how to beat that character as <b>{{char1.fullName}}</b>.</center>
+      </p>
+    {% endif %}
   </div>
   {% endif %}
 
@@ -74,8 +81,14 @@
       {% if isGenericContent %}
         <section class="warning">
           <h2>Showing Generic Tips</h2><br>
-          These are basic tips on how to beat {{char2.fullName}}. We don't have tips for how
-          {{char1.fullName}} specifically should play. If you have advice for this matchup - consider <a href="{{githubLinkCreate}}">adding them</a> to help the community!
+          These are basic tips on how to beat <b>{{char2.fullName}}</b>. We don't have tips for how
+          <b>{{char1.fullName}}</b> specifically should play. If you have advice for this matchup - consider <a href="{{githubLinkCreate}}">adding them</a> to help the community!
+        </section>
+        <hr style="width:100%; border:none;"></hr>
+      {% elif isVsAnyone %}
+        <section class="warning">
+          <h2>Showing Generic Tips</h2><br>
+          These are basic tips on how to beat <b>{{char2.fullName}}</b>. To get advice tailored to a specific character, make sure to pick <b>Player One</b>!
         </section>
         <hr style="width:100%; border:none;"></hr>
       {% endif %}
@@ -93,9 +106,10 @@
 
   {% if not isHomepage %}
     <div class="buttons">
-      <a id='edit' href="{{ githubLinkEdit if hasMatchupContent else githubLinkCreate }}">{{ "Edit this page" if hasMatchupContent and not isGenericContent else "Create this page" }}</a>
-      
-      {% if isGenericContent %}
+      {% if not isVsAnyone %}
+        <a id='edit' href="{{ githubLinkEdit if hasMatchupContent else githubLinkCreate }}">{{ "Edit this page" if hasMatchupContent and not isGenericContent else "Create this page" }}</a>
+      {% endif %}
+      {% if isGenericContent or isVsAnyone %}
         <a id='edit' href="{{githubGenericEdit}}">Edit generic {{char2.fullName}} tips</a>
       {% endif %}
     </div>
