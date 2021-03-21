@@ -232,16 +232,14 @@ section {
 
 #edit {
   display: block;
-  background: white;
-  padding: 17px;
+  background: #999;
+  padding: 2px 5px;
   font-size: 18px;
   text-transform: uppercase;
   text-align: center;
-  border-radius: 19px;
   color: black;
   text-decoration: none;
-  border: 3px double #aaa;
-  margin: 12px auto;
+  color: white;
 }
 
 #matchup {
@@ -276,9 +274,15 @@ footer {
 .buttons {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   border-top: 1px solid #ccc;
+  min-height: 60px;
+  padding: 14px;
+}
+
+.buttons span {
+  opacity: .5;
 }
 
 #main {

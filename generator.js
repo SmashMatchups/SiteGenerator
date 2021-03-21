@@ -61,7 +61,7 @@ characters.forEach(char1 => {
       hasMatchupContent: !!content,
       matchupContent: content,
       isGenericContent,
-      isHomePage: char1.isAnyone && char2.isAnyone,
+      isHomepage: char1.isAnyone && char2.isAnyone,
       char1,
       char2,
       githubLinkCreate: `https://github.com/SmashMatchups/SSBU-Matchups/new/main/matchups/${char1.urlName}/${char2.urlName}?filename=${char2.urlName}.md&value=%23%20${encodeURIComponent(char1.fullName)}%20vs%20${encodeURIComponent(char2.fullName)}`,
