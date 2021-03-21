@@ -6,13 +6,14 @@ const cheerio = require('cheerio');
 const args = require('minimist')(process.argv.slice(2));
 const local = !!args['local']
 const localPath = local ? "local" : "output";
+const fileName = local ? ".html" : "";
 
 fs.mkdirSync(localPath,{recursive: true});
 console.log("Building site to './" + localPath + "'");
 
 /** @type {{urlName:string,fullName:string}[]} */
 let characters = JSON.parse(fs.readFileSync('./characters.json'));
-if (local) characters = characters.slice(0,5);
+if (local) characters = characters.slice(0,25);
 
 const template = nunjucks.compile(fs.readFileSync("index.njk").toString());
 
@@ -25,7 +26,7 @@ const writeTemplate = (data) => {
     canonicalLink,
     ...data
   });
-  fs.writeFileSync(path + (local ? ".html" : ""),output)
+  fs.writeFileSync(path + fileName,output);
 }
 
 const renderMarkdown = (content) => {
@@ -60,6 +61,7 @@ characters.forEach(char1 => {
       hasMatchupContent: !!content,
       matchupContent: content,
       isGenericContent,
+      isHomePage: char1.isAnyone && char2.isAnyone,
       char1,
       char2,
       githubLinkCreate: `https://github.com/SmashMatchups/SSBU-Matchups/new/main/matchups/${char1.urlName}/${char2.urlName}?filename=${char2.urlName}.md&value=%23%20${encodeURIComponent(char1.fullName)}%20vs%20${encodeURIComponent(char2.fullName)}`,
@@ -70,8 +72,8 @@ characters.forEach(char1 => {
   });
 });
 
-// Also add our homepage
-fs.writeFileSync(localPath + '/index.html',template.render({local,isHomepage: true,characters,canonicalLink: "https://www.smashmatchups.com/"}))
+// Rename our anyone-vs-anyone to homepage
+fs.copyFileSync(`${localPath}/anyone-vs-anyone${fileName}`,`${localPath}/index.html`);
 
 let siteMapText = "https://www.smashmatchups.com/";
 console.log("Creating sitemap");

@@ -22,7 +22,6 @@ body {
 
 h1{
   font-size: 3rem;
-  margin: 0px 20px;
   text-align: center;
 }
 
@@ -33,16 +32,14 @@ h2 {
 }
 
 #picker {
-  margin: 20px 0px;
   display: flex;
   text-align: center;
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 100%;
   font-size: calc(18px + 2vw);
-  margin-bottom: calc(2vh + 24px);
   font-weight: normal;
+  padding: 10px;
 }
 
 a#char1.picked {
@@ -204,25 +201,16 @@ a#char2.picked {
 
 #content {
   padding: 24px;
-  margin: 26px 0px;
-  min-width: 50%;
-  width: 800px;
-  max-width: 100%;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0px 3px 7px rgb(0 0 0 / 50%);
 }
 
 section {
   background: white;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 500px;
   margin: 6px;
   flex-grow: 1;
   padding: 6px;
-  box-shadow: 0px 2px 5px #0003;
   max-width: 480px;
+  min-width: 270px;
+  background: linear-gradient(0, transparent, #c556561a);
 }
 
 #edit {
@@ -243,14 +231,21 @@ section {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  margin: auto;
-  max-width: 1000px;
   justify-content: center;
+}
+
+#matchup section {
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 section.warning {
   padding: 12px;
-  background: lightyellow;
+  background: #f7ddb7;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  font-size: .9rem;
 }
 
 footer {
@@ -266,5 +261,18 @@ footer {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  border-top: 1px solid #ccc;
+}
+
+#main {
+  background: white;
+  display: flex;
+  position: relative;
+  flex-direction: column;
   max-width: 1000px;
+  margin: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0px 2px 5px #0003;
+  width: 95%;
 }

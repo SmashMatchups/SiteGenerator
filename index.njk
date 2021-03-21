@@ -32,93 +32,100 @@
     </a>
   </div>
 
-  <h1 id="picker">
-    <a href='#picker1' id='char1' class="{{'picked' if char1}}">
-      {% if char1 %} {{char1.fullName}} {% else %} Player One {% endif %}</a>
-    <span>vs</span>
-    <a href='#picker2' id="char2" class="{{'picked' if char2}}">
-      {% if char2 %} {{char2.fullName}} {% else %} Player Two {% endif %}</a>
-    </a>
-  </h1>
+  <div id="main">
+    
+    <h1 id="picker">
+      <a href='#picker1' id='char1' class="{{'picked' if char1}}">
+        {{char1.fullName if not isHomePage else "Player One"}}
+      </a>
+      <span>vs</span>
+      <a href='#picker2' id="char2" class="{{'picked' if char2}}">
+        {{char2.fullName if not isHomePage else "Player Two"}} 
+      </a>
+    </h1>
 
-  <div id="picker1" class="character-list">
-    {% for char in characters %}
-      {% if not char.isAnyone %}
-        <a href='{{char.urlName}}-vs-{{char2.urlName if char2 else "anyone"}}{{".html" if local}}' class="character {{'char1' if char1.urlName == char.urlName}} {{'char2' if char2.urlName == char.urlName}}">
-          <div class="icon" style="background-image: url({{'../assets/' if local}}img/icon/{{char.urlName}}.png)"></div>
-          <span>{{char.fullName}}</span>
-        </a>
+    <div id="picker1" class="character-list">
+      {% for char in characters %}
+        {% if not char.isAnyone %}
+          <a href='{{char.urlName}}-vs-{{char2.urlName}}{{".html" if local}}' class="character {{'char1' if char1.urlName == char.urlName}} {{'char2' if char2.urlName == char.urlName}}">
+            <div class="icon" style="background-image: url({{'../assets/' if local}}img/icon/{{char.urlName}}.png)"></div>
+            <span>{{char.fullName}}</span>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div id="picker2" class="character-list">
+      {% for char in characters %}
+        {% if not char.isAnyone %}
+          <a href='{{char1.urlName}}-vs-{{char.urlName}}{{".html" if local}}' class="character {{'char1' if char1.urlName == char.urlName}} {{'char2' if char2.urlName == char.urlName}}">
+            <div class="icon" style="background-image: url({{'../assets/' if local}}img/icon/{{char.urlName}}.png)"></div>
+            <span>{{char.fullName}}</span>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div id="content">
+      <!-- Home Page: -->
+      {% if char1.isAnyone and char2.isAnyone %}
+      <section class="warning">
+        <center>
+          <b>First, pick any two characters above.</b><br>
+          You'll get tips on how Player One can beat Player Two. So <a href="./mewtwo-vs-bowser{{'.html' if local}}">Mewtwo vs Bowser</a> gives advice on how the Mewtwo should play.
+        </center>
+      </section>
+      <!-- Player One Selected: -->
+      {% elif char2.isAnyone %}
+        <section class="warning">
+        <center>
+          <b>Pick Player Two</b>
+         for suggestions on how to beat that character as <b>{{char1.fullName}}</b>.
+        </center>
+      {% else %}
+      <!-- Player Two Selected: -->
+        {% if hasMatchupContent %}      
+          {% if isGenericContent %}
+            <!-- Generic Tips Warning -->
+            <section class="warning">
+              These are basic tips on how to beat <b>{{char2.fullName}}</b>. We don't have tips for how
+              <b>{{char1.fullName}}</b> specifically should play. If you have advice for this matchup - consider <a href="{{githubLinkCreate}}">adding them</a> to help the community!
+            </section>
+            <hr style="width:100%; border:none;"></hr>
+          {% elif char1.isAnyone %}
+            <!-- Select Player One Warning: -->
+            <section class="warning">
+              These are basic tips on how to beat <b>{{char2.fullName}}</b>. To get advice tailored to a specific character, make sure to pick <b>Player One</b>!
+            </section>
+            <hr style="width:100%; border:none;"></hr>
+        {% endif %}
+          <div id="matchup">
+           {{ matchupContent | safe }}
+          </div>
+        {% else %}
+          <!-- We got nothing: -->
+          <section class="warning">
+          Sorry, we have no tips for how <b>{{char1.fullName}}</b> can beat 
+          <b>{{char2.fullName}}</b>. Help our community by adding some!
+          </section>
+        {% endif %}
+
       {% endif %}
-    {% endfor %}
-  </div>
+    </div>
 
-  <div id="picker2" class="character-list">
-    {% for char in characters %}
-      {% if not char.isAnyone %}
-        <a href='{{char1.urlName if char1 else "anyone"}}-vs-{{char.urlName}}{{".html" if local}}' class="character {{'char1' if char1.urlName == char.urlName}} {{'char2' if char2.urlName == char.urlName}}">
-          <div class="icon" style="background-image: url({{'../assets/' if local}}img/icon/{{char.urlName}}.png)"></div>
-          <span>{{char.fullName}}</span>
-        </a>
-      {% endif %}
-    {% endfor %}
-  </div>
+    
 
-  {% if isHomepage %}
-  <div id="content">
-    <p>
-    {% if not showPickPlayerTwo %}
-      <h2>Pick any two characters and get information on the Matchup.</h2><br>
-      The matchup information will be on how Player One can
-      win - so <a href="./mewtwo-vs-bowser{{'.html' if local}}">Mewtwo vs Bowser</a> describes how Mewtwo should play.
-    </p>
-    {% else %}
-
-      <h2>Pick Player Two</h2><br>
-        <center>For suggestions on how to beat that character as <b>{{char1.fullName}}</b>.</center>
-      </p>
+    {% if not isHomepage %}
+      <div class="buttons">
+        {% if not char1.isAnyone %}
+          <a id='edit' href="{{ githubLinkEdit if hasMatchupContent else githubLinkCreate }}">{{ "Edit this page" if hasMatchupContent and not isGenericContent else "Create this page" }}</a>
+        {% endif %}
+        {% if isGenericContent or char1.isAnyone %}
+          <a id='edit' href="{{githubGenericEdit}}">Edit generic {{char2.fullName}} tips</a>
+        {% endif %}
+      </div>
     {% endif %}
   </div>
-  {% endif %}
-
-  {% if hasMatchupContent %}
-    <div id="matchup">
-      {% if isGenericContent %}
-        <section class="warning">
-          <h2>Showing Generic Tips</h2><br>
-          These are basic tips on how to beat <b>{{char2.fullName}}</b>. We don't have tips for how
-          <b>{{char1.fullName}}</b> specifically should play. If you have advice for this matchup - consider <a href="{{githubLinkCreate}}">adding them</a> to help the community!
-        </section>
-        <hr style="width:100%; border:none;"></hr>
-      {% elif char1.isAnyone %}
-        <section class="warning">
-          <h2>Showing Generic Tips</h2><br>
-          These are basic tips on how to beat <b>{{char2.fullName}}</b>. To get advice tailored to a specific character, make sure to pick <b>Player One</b>!
-        </section>
-        <hr style="width:100%; border:none;"></hr>
-      {% endif %}
-    {{ matchupContent | safe }}
-    </div>
-  {% endif %}
-
-  {% if not isHomepage and not hasMatchupContent %}
-    <div id="content">
-      <p>
-        <h2>No matchup information found.<br>Sorry about that!</h2>
-      </p>
-    </div>
-  {% endif %}
-
-  {% if not isHomepage %}
-    <div class="buttons">
-      {% if not char1.isAnyone %}
-        <a id='edit' href="{{ githubLinkEdit if hasMatchupContent else githubLinkCreate }}">{{ "Edit this page" if hasMatchupContent and not isGenericContent else "Create this page" }}</a>
-      {% endif %}
-      {% if isGenericContent or char1.isAnyone %}
-        <a id='edit' href="{{githubGenericEdit}}">Edit generic {{char2.fullName}} tips</a>
-      {% endif %}
-    </div>
-  {% endif %}
-
   <footer>
     SmashMatchups.com is not affiliated, associated, authorized, endorsed by, or in any way officially connected with Nintendo, or any of their properties.
   </footer>
