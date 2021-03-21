@@ -44,26 +44,32 @@
       </a>
     </h1>
 
-    <div id="picker1" class="character-list">
-      {% for char in characters %}
-        {% if not char.isAnyone %}
-          <a href='{{char.urlName}}-vs-{{char2.urlName}}{{".html" if local}}' class="character {{'char1' if char1.urlName == char.urlName}} {{'char2' if char2.urlName == char.urlName}}">
-            <div class="icon" style="background-image: url({{'../assets/' if local}}img/icon/{{char.urlName}}.png)"></div>
-            <span>{{char.fullName}}</span>
-          </a>
-        {% endif %}
-      {% endfor %}
+   <div id="picker1">
+    <h2>Player One:</h2>
+      <div class="character-list">
+        {% for char in characters %}
+          {% if not char.isAnyone %}
+            <a href='{{char.urlName}}-vs-{{char2.urlName}}{{".html" if local}}' class="character {{'char1' if char1.urlName == char.urlName}} {{'char2' if char2.urlName == char.urlName}}">
+              <div class="icon" style="background-image: url({{'../assets/' if local}}img/icon/{{char.urlName}}.png)"></div>
+              <span>{{char.fullName}}</span>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
     </div>
 
-    <div id="picker2" class="character-list">
-      {% for char in characters %}
-        {% if not char.isAnyone %}
-          <a href='{{char1.urlName}}-vs-{{char.urlName}}{{".html" if local}}' class="character {{'char1' if char1.urlName == char.urlName}} {{'char2' if char2.urlName == char.urlName}}">
-            <div class="icon" style="background-image: url({{'../assets/' if local}}img/icon/{{char.urlName}}.png)"></div>
-            <span>{{char.fullName}}</span>
-          </a>
-        {% endif %}
-      {% endfor %}
+    <div id="picker2">  
+      <h2>Player Two:</h2>
+      <div class="character-list">
+        {% for char in characters %}
+          {% if not char.isAnyone %}
+            <a href='{{char1.urlName}}-vs-{{char.urlName}}{{".html" if local}}' class="character {{'char1' if char1.urlName == char.urlName}} {{'char2' if char2.urlName == char.urlName}}">
+              <div class="icon" style="background-image: url({{'../assets/' if local}}img/icon/{{char.urlName}}.png)"></div>
+              <span>{{char.fullName}}</span>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
     </div>
 
     <div id="content">

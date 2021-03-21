@@ -13,7 +13,7 @@ console.log("Building site to './" + localPath + "'");
 
 /** @type {{urlName:string,fullName:string}[]} */
 let characters = JSON.parse(fs.readFileSync('./characters.json'));
-if (local) characters = characters.slice(0,25);
+//if (local) characters = characters.slice(0,25);
 
 const template = nunjucks.compile(fs.readFileSync("index.njk").toString());
 

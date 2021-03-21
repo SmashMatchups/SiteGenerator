@@ -3,7 +3,8 @@
 body {
   padding: 20px;
   background: #eee;
-  font-family: Roboto, Arial, sans-serif;
+  background: linear-gradient(149deg, rgba(56,133,219,.7) 0%, rgba(62,193,244,.7) 25%, rgba(177,238,238,.7) 49%, rgba(252,252,160,.7) 76%, rgba(250,208,31,.7) 100%);
+  background-size: cover;  font-family: Roboto, Arial, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,6 +41,7 @@ h2 {
   font-size: calc(18px + 2vw);
   font-weight: normal;
   padding: 10px;
+  border-bottom: 1px solid #ccc;
 }
 
 a#char1.picked {
@@ -49,9 +51,7 @@ a#char1.picked {
 a#char2.picked {
   border-color: rgb(43, 77, 230);
 }
-.character-list[hidden] {
-  display: none;
-}
+
 
 #picker a {
   margin: 0px 22px;
@@ -64,23 +64,40 @@ a#char2.picked {
   color: black;
 }
 
-.character-list {
+#picker1, #picker2 {
   display: none;
-  flex-wrap: wrap;
+  position: fixed;
+  top: 0px;
+  left: 0px;
   width: 100%;
-  max-width: 1600px;
-  background-repeat:no-repeat;
-  background-size: cover;
-  margin: auto;
-  border: 1px solid black;
+  height: 100%;
+  justify-content: center;
   background: rgb(56,133,219);
   background: linear-gradient(149deg, rgba(56,133,219,1) 0%, rgba(62,193,244,1) 25%, rgba(177,238,238,1) 49%, rgba(252,252,160,1) 76%, rgba(250,208,31,1) 100%);
   background-size: cover;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: start;
+  overflow-y: auto;
 }
 
-.character-list:target {
+#picker1 h2, #picker2 h2 {
+  color: white;
+  font-size: 3rem;
+  text-shadow: 0 2px 2px black;
+  margin: 4vh;
+}
+#picker1:target, #picker2:target {
   display: flex;
+}
+.character-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1300px;
+  background-repeat:no-repeat;
+  background-size: cover;
+  margin: 10px auto;
+  justify-content: center;
 }
 
 .character-list .character {
@@ -90,7 +107,7 @@ a#char2.picked {
   flex-grow: 1;
   height: 75px;
   background: transparent;
-  border: 2px solid black;
+  border: 3px solid black;
   text-shadow: 0 0 2px black, 0 0 2px black, 0 0 4px black;
   text-transform: uppercase;
   font-weight: bold;
@@ -104,6 +121,7 @@ a#char2.picked {
   background-size: cover;
   cursor: pointer;	
   text-decoration: none;
+  margin: -1px;
 }
 
 .character-list .character.char1 {
@@ -189,9 +207,8 @@ a#char2.picked {
   }
 
   #heading {
-    filter: invert(1);
-    background: #d7e3f1;
     margin-bottom: 20px;
+    padding: 4px;
   }
 }
 
@@ -273,6 +290,6 @@ footer {
   margin: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-shadow: 0px 2px 5px #0003;
+  box-shadow: 0px 2px 7px #0005;
   width: 95%;
 }
