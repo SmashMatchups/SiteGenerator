@@ -2,7 +2,9 @@ const fs = require('fs');
 const md = require('markdown-it')();
 const nunjucks = require('nunjucks');
 const cheerio = require('cheerio');
+const gitDateExtractor = require('git-date-extractor');
 
+const stamps = gitDateExtractor.getStamps({onlyIn: "matchups"});
 const args = require('minimist')(process.argv.slice(2));
 const local = !!args['local']
 const localPath = local ? "local" : "output";
@@ -13,7 +15,7 @@ console.log("Building site to './" + localPath + "'");
 
 /** @type {{urlName:string,fullName:string}[]} */
 let characters = JSON.parse(fs.readFileSync('./characters.json'));
-//if (local) characters = characters.slice(0,25);
+if (local) characters = characters.slice(0,3);
 
 const template = nunjucks.compile(fs.readFileSync("index.njk").toString());
 
@@ -28,6 +30,8 @@ const writeTemplate = (data) => {
   });
   fs.writeFileSync(path + fileName,output);
 }
+
+
 
 const renderMarkdown = (content) => {
   const domString = md.render(content);
@@ -44,16 +48,23 @@ const renderMarkdown = (content) => {
 
 console.log("Generating matchup files...")
 
+
+
 // For every combonation of characters
 characters.forEach(char1 => {
-  characters.forEach(char2 => {
+  characters.forEach(async char2 => {
     const matchupFile = `matchups/${char1.urlName}/${char2.urlName}.md`;
     const fallBackFile = `matchups/${char2.urlName}/how_to_beat.md`;
     let content = '';
+    let lastModified;
     let isGenericContent = false;
-    if (fs.existsSync(matchupFile)) content = fs.readFileSync(matchupFile).toString();
+    if (fs.existsSync(matchupFile)) {
+      content = fs.readFileSync(matchupFile).toString();
+      lastModified = new Date((await stamps)[matchupFile].modified * 1000);
+    }
     else if (fs.existsSync(fallBackFile)) {
       content = fs.readFileSync(fallBackFile).toString();
+      lastModified = new Date((await stamps)[fallBackFile].modified * 1000);
       isGenericContent = !char1.isAnyone;
     }
     content = renderMarkdown(content);
@@ -61,6 +72,7 @@ characters.forEach(char1 => {
       hasMatchupContent: !!content,
       matchupContent: content,
       isGenericContent,
+      lastModified: lastModified ? lastModified.toISOString().split('T')[0] : false,
       isHomepage: char1.isAnyone && char2.isAnyone,
       char1,
       char2,
