@@ -31,19 +31,45 @@ const writeTemplate = (data) => {
   fs.writeFileSync(path + fileName,output);
 }
 
+/** @param {cheerio.Root} root  */
+function addMicroData(root) {
+  root('#content section').toArray().forEach(section => {
+    section.attribs.itemprop = 'step';
+    section.attribs.itemtype = "http://schema.org/HowToStep";
+    section.attribs.itemscope = '';
+  });
+  root('#content h2').toArray().forEach(h2 => h2.attribs['itemprop'] = 'name')
+  root('#content li').toArray().forEach(ul => {
+    ul.attribs['itemprop'] = 'itemListElement';
+    ul.attribs['itemscope'] = '';
+    ul.attribs['itemtype'] = "http://schema.org/HowToDirection";
+  });
+  
+  root('li').wrapInner('<span itemprop="text"></span>');
+  //root('#content li').toArray().forEach(li => li.attribs['itemprop'] = 'text')
+  return root;
+}
 
-
+// section itemprop="step" itemscope itemtype="http://schema.org/HowToStep"
+// h2  ele.attribs['itemprop'] = 'name';
+// ul ele.attribs['itemprop']="itemListElement";
+// li itemprop = text
 const renderMarkdown = (content) => {
   const domString = md.render(content);
   if (!domString) return '';
   const doc = cheerio.load(domString);
   const result = cheerio.load("<div id='content'></div>");
   doc('body > *').toArray().forEach(ele => {
-    if (ele.name == 'h2') result('#content').append("<section></section>")
+    if (ele.name == 'h2') result('#content').append(`<section></section>`);
     if (result('#content').children().length > 0)
       result('#content section').last().append(ele);
   });
-  return result('#content').html();
+  doc('#content li').toArray().forEach(ul => {
+    ul.attribs['itemprop'] = 'itemListElement';
+    ul.attribs['itemscope'] = '';
+    ul.attribs['itemtype'] = "http://schema.org/HowToDirection";
+  });
+  return addMicroData(result)('#content').html();
 }
 
 console.log("Generating matchup files...")

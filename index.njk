@@ -14,20 +14,6 @@
     <meta name="description" content="How to win every matchup in Super Smash Bros. Ultimate">
   {% else %}
     <meta name="description" content="How to beat {{char2.fullName}} as {{char1.fullName}} in Super Smash Bros. Ultimate">
-    <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "HowToTip",
-      "mainEntityOfPage": "{{canonicalLink}}",
-      "abstract": "How to beat {{char2.fullName}} as {{char1.fullName}} in Super Smash Bros. Ultimate",
-      "character": "{{char1.fullName}}",
-      "image": [
-        "https://www.smashmatchups.com/img/matchupImages/{{char1.urlName}}-vs-{{char2.urlName}}-1x1.jpg",
-        "https://www.smashmatchups.com/img/matchupImages/{{char1.urlName}}-vs-{{char2.urlName}}-4x3.jpg",
-        "https://www.smashmatchups.com/img/matchupImages/{{char1.urlName}}-vs-{{char2.urlName}}-16x9.jpg"
-     ]
-    }
-   </script>
   {% endif %}
 </head>
 
@@ -38,9 +24,9 @@
     </a>
   </div>
 
-  <div id="main">
+  <div id="main" itemscope itemtype="http://schema.org/HowTo">
     
-    <h1 id="picker">
+    <h1 id="picker" itemprop="name">
       <a href='#picker1' id='char1' class="{{'picked' if char1}}">
         {{char1.fullName if not isHomePage else "Player One"}}
       </a>
@@ -79,6 +65,9 @@
     </div>
 
     <div id="content">
+      <span style="display:none" itemprop="description">
+       How to beat {{char2.fullName}} as {{char1.fullName}} in Super Smash Bros. Ultimate
+      </span>
       <!-- Home Page: -->
       {% if char1.isAnyone and char2.isAnyone %}
       <section class="warning">
