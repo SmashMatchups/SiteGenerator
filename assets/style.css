@@ -186,30 +186,17 @@ a#char2.picked {
   z-index: 1;
 }
 
-@media only screen and (max-width: 600px) {
-  .character-list .character {
-    width: 100%;
-    max-width: 100%;
-    background: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: stretch;
-    align-items: center;
-    height: 50px;
-  }
-
-  .character-list .icon {
-    display: block;
-    width: 100px;
-    position: static;
-    margin-right: 16px;
-    background-position: center;
-  }
-
-  #heading {
-    margin-bottom: 20px;
-    padding: 4px;
-  }
+#main {
+  background: white;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  max-width: 1000px;
+  margin: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0px 2px 7px #0005;
+  width: 95%;
 }
 
 .character-list .character * {
@@ -285,15 +272,42 @@ footer {
   opacity: .5;
 }
 
-#main {
-  background: white;
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  max-width: 1000px;
-  margin: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-shadow: 0px 2px 7px #0005;
-  width: 95%;
+
+@media only screen and (max-width: 600px) {
+  .character-list .character {
+    width: 100%;
+    max-width: 100%;
+    background: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: center;
+    height: 50px;
+  }
+
+  .character-list .icon {
+    display: block;
+    width: 100px;
+    position: static;
+    margin-right: 16px;
+    background-position: center;
+  }
+
+  #heading {
+    margin-bottom: 0px;
+  }
+
+  body {
+    padding: 0;
+  }
+
+  #main {
+    margin: 0;
+    width: 100%;
+  }
+
+  .buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
