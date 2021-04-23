@@ -191,7 +191,7 @@ a#char2.picked {
   display: flex;
   position: relative;
   flex-direction: column;
-  max-width: 1000px;
+  max-width: 1038px;
   margin: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
